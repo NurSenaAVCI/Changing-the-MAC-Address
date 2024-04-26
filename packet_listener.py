@@ -6,4 +6,8 @@ def listen_packet(interface):
     #pnr = The function where we will process the packages
 
 def analyze_packet(packet):
-    packet.show()
+    if packet.haslayer(http.HTTPRequest):
+        if packet.haslayer(scapy.Raw):
+            print(packet[scapy.Raw].load)
+
+listen_packet("interface")
